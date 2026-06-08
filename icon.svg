@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="#1a1a2e" />
+
+  <!-- Nose silhouette -->
+  <path d="M54 85 L64 30 L74 85" fill="none" stroke="#e0e0e0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Nostrils -->
+  <circle cx="54" cy="88" r="4" fill="#e0e0e0"/>
+  <circle cx="74" cy="88" r="4" fill="#e0e0e0"/>
+
+  <!-- Powder lines -->
+  <line x1="22" y1="102" x2="48" y2="102" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="80" y1="102" x2="106" y2="102" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Sparkle/energy dots -->
+  <circle cx="36" cy="42" r="2.5" fill="#fff" opacity="0.7"/>
+  <circle cx="92" cy="42" r="2.5" fill="#fff" opacity="0.7"/>
+  <circle cx="64" cy="18" r="2" fill="#fff" opacity="0.5"/>
+</svg>
