@@ -140,12 +140,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 NSBezierPath(ovalIn: NSRect(x: 5, y: 6, width: 1.5, height: 1.5)).fill()
                 NSBezierPath(ovalIn: NSRect(x: 7, y: 8, width: 1, height: 1)).fill()
             } else {
-                // Tube lying flat (inactive)
+                // Tube diagonal (inactive, no lines)
                 let tube = NSBezierPath()
-                tube.move(to: NSPoint(x: 4, y: 9))
-                tube.line(to: NSPoint(x: 14, y: 9))
+                tube.move(to: NSPoint(x: 6, y: 4))
+                tube.line(to: NSPoint(x: 12, y: 14))
                 tube.lineWidth = 2.5
                 tube.lineCapStyle = .round
+
+                // Dashed to show "off"
+                let pattern: [CGFloat] = [3, 2]
+                tube.setLineDash(pattern, count: 2, phase: 0)
                 tube.stroke()
             }
 
