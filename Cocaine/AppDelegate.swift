@@ -14,6 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         button.sendAction(on: [.leftMouseUp, .rightMouseUp])
         button.target = self
         updateIcon()
+        activate()
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -108,30 +109,44 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func makeIcon(active: Bool) -> NSImage {
         let size = NSSize(width: 18, height: 18)
         let image = NSImage(size: size, flipped: false) { rect in
-            NSGraphicsContext.current?.cgContext.setLineWidth(1.5)
             NSColor.black.setStroke()
-
-            // Nose shape (triangle/line)
-            let nosePath = NSBezierPath()
-            nosePath.move(to: NSPoint(x: 5, y: 4))
-            nosePath.line(to: NSPoint(x: 9, y: 14))
-            nosePath.line(to: NSPoint(x: 13, y: 4))
-            nosePath.stroke()
+            NSColor.black.setFill()
 
             if active {
-                // "Powder lines" when active
-                NSColor.black.setFill()
+                // Tube diagonal (snorting)
+                let tube = NSBezierPath()
+                tube.move(to: NSPoint(x: 6, y: 4))
+                tube.line(to: NSPoint(x: 12, y: 14))
+                tube.lineWidth = 2.5
+                tube.lineCapStyle = .round
+                tube.stroke()
+
+                // Powder lines
                 let line1 = NSBezierPath()
-                line1.move(to: NSPoint(x: 2, y: 2))
-                line1.line(to: NSPoint(x: 7, y: 2))
-                line1.lineWidth = 2.0
+                line1.move(to: NSPoint(x: 2, y: 4))
+                line1.line(to: NSPoint(x: 6, y: 4))
+                line1.lineWidth = 1.5
+                line1.lineCapStyle = .round
                 line1.stroke()
 
                 let line2 = NSBezierPath()
-                line2.move(to: NSPoint(x: 10, y: 2))
-                line2.line(to: NSPoint(x: 16, y: 2))
-                line2.lineWidth = 2.0
+                line2.move(to: NSPoint(x: 2, y: 1.5))
+                line2.line(to: NSPoint(x: 8, y: 1.5))
+                line2.lineWidth = 1.5
+                line2.lineCapStyle = .round
                 line2.stroke()
+
+                // Particles
+                NSBezierPath(ovalIn: NSRect(x: 5, y: 6, width: 1.5, height: 1.5)).fill()
+                NSBezierPath(ovalIn: NSRect(x: 7, y: 8, width: 1, height: 1)).fill()
+            } else {
+                // Tube lying flat (inactive)
+                let tube = NSBezierPath()
+                tube.move(to: NSPoint(x: 4, y: 9))
+                tube.line(to: NSPoint(x: 14, y: 9))
+                tube.lineWidth = 2.5
+                tube.lineCapStyle = .round
+                tube.stroke()
             }
 
             return true

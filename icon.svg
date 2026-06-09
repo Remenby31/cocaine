@@ -1,12 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
   <rect width="128" height="128" rx="28" fill="#1a1a2e"/>
-
-  <!-- Two powder lines -->
-  <g stroke="#e0e0e0" stroke-width="6" stroke-linecap="round">
-    <line x1="28" y1="72" x2="100" y2="72"/>
-    <line x1="28" y1="90" x2="100" y2="90"/>
+  <!-- Lines being consumed -->
+  <g stroke="#e0e0e0" stroke-width="4" stroke-linecap="round">
+    <line x1="24" y1="96" x2="46" y2="96"/>
+    <line x1="24" y1="106" x2="60" y2="106"/>
   </g>
-
-  <!-- Razor blade (diamond shape) -->
-  <path d="M52 42 L64 30 L76 42 L64 48 Z" fill="#e0e0e0"/>
+  <!-- Tube touching end of line -->
+  <line x1="46" y1="96" x2="82" y2="42" stroke="#e0e0e0" stroke-width="10" stroke-linecap="round"/>
+  <ellipse cx="82" cy="42" rx="5" ry="3.5" fill="none" stroke="#e0e0e0" stroke-width="2.5" transform="rotate(-50 82 42)"/>
+  <!-- Suction particles -->
+  <circle cx="42" cy="90" r="2" fill="#fff" opacity="0.6"/>
+  <circle cx="48" cy="86" r="1.5" fill="#fff" opacity="0.4"/>
+  <circle cx="44" cy="82" r="1.5" fill="#fff" opacity="0.3"/>
 </svg>

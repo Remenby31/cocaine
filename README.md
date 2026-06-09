@@ -17,46 +17,62 @@
 
 ---
 
-A tiny menu bar app that prevents your Mac from sleeping — even when you close the lid. One click to toggle. No cloud, no bloat, no subscription. Just `caffeinate` + `pmset disablesleep` wrapped in a clean native UI.
+A tiny native menu bar app that prevents your Mac from sleeping — **even when you close the lid**. Built for developers running AI agents (Claude Code, Cursor, Codex, Aider...) who need their sessions to survive a closed laptop.
+
+Toss your MacBook in your backpack, tether to your phone, and let your agents finish the job on the commute home.
 
 ## Why?
 
-Tools like Caffeine and KeepingYouAwake prevent idle sleep, but your Mac still goes to sleep when you close the lid. Amphetamine handles it, but it's App Store only and full of features you don't need.
+You're running a long Claude Code session. You need to leave. You close your Mac and... everything dies.
 
-**Cocaine** does one thing: keeps your Mac awake no matter what. Toggle on, close the lid, walk away.
+- **Caffeine / KeepingYouAwake** only prevent idle sleep — closing the lid still kills your session
+- **Amphetamine** handles it, but it's App Store only and bloated with features you don't need
+- **`caffeinate`** alone doesn't prevent lid-close sleep
+
+**Cocaine** does one thing: keeps your Mac awake no matter what. Toggle on, close the lid, walk away. Your agents keep running.
 
 ## Install
 
 ```bash
 git clone https://github.com/Remenby31/cocaine.git
 cd cocaine
-bash build.sh            # builds + installs to /Applications
+bash build.sh                # builds + installs to /Applications
 sudo bash setup-sudoers.sh   # one-time: allows pmset without password
 open /Applications/Cocaine.app
 ```
+
+The app auto-activates on launch and starts at login via LaunchAgent.
 
 ## Usage
 
 | Action | How |
 |---|---|
-| **Toggle** | Click the menu bar icon (left click) |
+| **Toggle** | Left-click the menu bar icon |
 | **Menu** | Right-click the icon |
-| **Start at Login** | Right-click → Start at Login |
 | **Quit** | Right-click → Quit |
 
-When active, the icon shows powder lines. When inactive, just the nose.
+When active, the icon shows the tube snorting powder lines. When inactive, the tube is lying flat.
 
 ## How it works
 
 When you activate Cocaine:
-1. `sudo pmset -a disablesleep 1` — disables lid-close sleep
-2. `caffeinate -di` — prevents idle and display sleep
 
-When you deactivate (or quit):
+1. **`sudo pmset -a disablesleep 1`** — disables lid-close sleep at the OS level
+2. **`caffeinate -di`** — prevents idle and display sleep
+
+When you deactivate or quit:
+
 1. Kills `caffeinate`
-2. `sudo pmset -a disablesleep 0` — restores normal sleep behavior
+2. **`sudo pmset -a disablesleep 0`** — restores normal sleep behavior
 
-The `setup-sudoers.sh` script adds a passwordless rule for `pmset` only, so the toggle is instant.
+The `setup-sudoers.sh` script adds a NOPASSWD rule for `pmset` only, so the toggle is instant and doesn't prompt for your password.
+
+## Use cases
+
+- Let **Claude Code / Cursor / Codex** finish a long task while your Mac is in your bag
+- Keep **SSH sessions** alive on the go with mobile hotspot
+- Run **long builds or deployments** without babysitting the lid
+- Keep a **dev server** running while you step away
 
 ## Requirements
 
